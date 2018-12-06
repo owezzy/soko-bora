@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -22,6 +23,7 @@ import { UserModule } from './user/user.module'
     InventoryModule,
     PosModule,
     UserModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
