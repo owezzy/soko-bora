@@ -2,8 +2,12 @@ import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: `
+    <mat-toolbar color="primary">
+      <a mat-button routerLink="/home">Soko Bora</a>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  `,
 })
 export class AppComponent {
   title = 'soko-bora'
