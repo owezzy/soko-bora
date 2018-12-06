@@ -1,10 +1,40 @@
 # SokoBora
+Soko Bora is a web application to manage and record a grocery store activities. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+```
+Give examples
+```
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+Say what the step will be
+
+```
+Give the example
+```
+
+And repeat
+
+```
+until finished
+```
+
+End with an example of getting some data out of the system or using it for a little demo
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:6000/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:5000/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -27,4 +57,19 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ![site map](/src/assets/soko-bora-site-map.png)
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Versioning
+
+Used [gitflow](https://nvie.com/posts/a-successful-git-branching-model/) for versioning.
+
+## Authors
+
+* **Owen Adira** - *Initial work* - [owezzy](https://owezzy.github.io)
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
