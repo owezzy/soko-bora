@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent },
+  { path: 'manager', loadChildren: './manager/manager.module#ManagerModule' },
 ]
 
 @NgModule({
