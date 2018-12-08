@@ -37,7 +37,7 @@
               "src/mstile-70x70.png",
               "src/safari-pinned-tab.svg"              ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/soko-bora-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
