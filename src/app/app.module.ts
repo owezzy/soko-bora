@@ -10,6 +10,7 @@ import { MaterialModule } from './material.module'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { PosModule } from './pos/pos.module'
 import { UserModule } from './user/user.module'
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
@@ -22,6 +23,7 @@ import { UserModule } from './user/user.module'
     PosModule,
     UserModule,
     HttpClientModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
