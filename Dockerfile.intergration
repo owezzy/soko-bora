@@ -8,7 +8,7 @@ ENV BUILD_SCRIPT build:prod
 
 # get source code
 RUN mkdir -p $SRC_DIR
-WORKDIR $SCR_DIR
+WORKDIR $SRC_DIR
 # if necessary, do SSH setup here or copy source code from local or CI environment
 RUN git clone $GIT_REPO .
 COPY $SRC_CODE_LOCATION .
@@ -23,8 +23,8 @@ ENV SRC_DIR /usr/src
 ENV TEST_SCRIPT test:prod
 
 RUN mkdir -p $SCR_DIR
-
-COPY --from=builder $BUILDER_SRC_DIR $SCR_DIR
+WORKDIR $SRC_DIR
+COPY --from=builder $BUILDER_SRC_DIR $SRC_DIR
 
 CMD 'npm run $TEST_SCRIPT'
 
