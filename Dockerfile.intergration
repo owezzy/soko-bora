@@ -1,4 +1,4 @@
-FROM duluca/minimal-node-build-env:8.9.4 as builder
+FROM owezzy/minimal-node-10-env:node-v10 as builder
 
 # project variables
 ENV SRC_DIR /usr/src
