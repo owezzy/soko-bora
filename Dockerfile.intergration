@@ -12,10 +12,8 @@ WORKDIR $SRC_DIR
 # if necessary, do SSH setup here or copy source code from local or CI environment
 RUN git clone $GIT_REPO .
 COPY $SRC_CODE_LOCATION .
-
 RUN npm install
 RUN npm run $BUILD_SCRIPT
-ENV SRC_CODE_LOCATION .
 
 
 # testing enviroment config
