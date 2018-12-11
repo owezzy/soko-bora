@@ -1,4 +1,4 @@
-FROM node:10.13.0 as buider
+FROM duluca/minimal-node-build-env:8.9.4 as builder
 
 # project variables
 ENV SRC_DIR /usr/src
@@ -11,7 +11,7 @@ RUN mkdir -p $SRC_DIR
 WORKDIR $SCR_DIR
 # if necessary, do SSH setup here or copy source code from local or CI environment
 RUN git clone $GIT_REPO .
-# COPY $SRC_CODE_LOCATION .
+COPY $SRC_CODE_LOCATION .
 
 RUN npm install
 RUN npm run $BUILD_SCRIPT
@@ -30,5 +30,5 @@ CMD 'npm run $TEST_SCRIPT'
 
 FROM duluca/minimal-nginx-web-server:1.13.8-alpine
 ENV BUILDER_SRC_DIR /usr/src
-COPY --from=builder $BUIDER_SRC_DIR/dist/var/www
+COPY --from=builder $BUIDER_SRC_DIR/dist /var/www
 CMD 'ngix'
