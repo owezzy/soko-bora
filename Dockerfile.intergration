@@ -15,6 +15,8 @@ COPY $SRC_CODE_LOCATION .
 
 RUN npm install
 RUN npm run $BUILD_SCRIPT
+ENV SRC_CODE_LOCATION .
+
 
 # testing enviroment config
 FROM slapers/alpine-node-chromium as tester
