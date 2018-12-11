@@ -10,6 +10,11 @@
     "standardize": "prettier **/*.ts --write",
     "start": "npm run standardize && ng serve --port 5000",
     "build": "npm run standardize && ng build",
+    "build:prod": "ng build --prod",
+    "build:ci": "docker build -f Dockerfile.integration . -t $npm_package_config_imageRepo:latest",
+    "test:prod": "npm test -- --watch=false",
+    "test:coverage": "ng test --browsers ChromiumNoSandbox --watch=false --code-coverage",
+    "posttest:coverage": "http-server -c-1 -o -p 9875 ./coverage",
     "predocker:build": "npm run build -- --prod --output-path dist && npm test -- --watch=false && npm run e2e",
     "docker:build": "cross-conf-env docker image build . -t $npm_package_config_imageRepo:$npm_package_version",
     "postdocker:build": "npm run docker:tag",
@@ -27,6 +32,11 @@
     "docker:debugmessage": "echo Docker Debug Completed Successfully! Hit Ctrl+C to terminate log tailing.",
     "predocker:debug": "run-s docker:build docker:run",
     "docker:debug": "run-s -cs docker:open:win docker:open:mac docker:debugmessage docker:taillogs"
+  },
+  "config": {
+    "imageRepo": "owezzy/soko-bora",
+    "imageName":"soko-bora",
+    "imagePort": "8080"
   },
   "prettier": {
     "printWidth": 90,
