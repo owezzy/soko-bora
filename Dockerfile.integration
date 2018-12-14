@@ -1,4 +1,4 @@
-FROM owezzy/minimal-node-10-build-env:node-v10 as builder
+FROM docker-node-env:v10 as builder
 
 # project variables
 ENV SRC_DIR /usr/src
