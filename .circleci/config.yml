@@ -8,19 +8,8 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-      - run:
-          name: Tests coverage
-          command: npm test:coverage
-      - run:
-          name: Tests coverage
-          command: npm posttest:coverage
-
       - store_test_results:
-          path: Icov.info
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
+          path: tests/units
       - run:
           name: Build Docker Image
           command: |
