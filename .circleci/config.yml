@@ -9,6 +9,15 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: false
       - run:
+          name: Generate code coverage
+          command: npm posttest:coverage
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - run:
           name: Build Docker Image
           command: |
             docker build -f Dockerfile.integration .

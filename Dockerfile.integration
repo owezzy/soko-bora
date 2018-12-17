@@ -32,4 +32,4 @@ CMD ['npm run $TEST_SCRIPT','npm run $TEST_COVERAGE']
 FROM duluca/minimal-nginx-web-server:1.13.8-alpine
 ENV BUILDER_SRC_DIR /usr/src
 COPY --from=builder $BUILDER_SRC_DIR/dist /var/www
-CMD ['nginx', 'npm run $TEST_COVERAGE_REPORT']
+CMD ['nginx']
