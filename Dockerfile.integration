@@ -27,7 +27,7 @@ RUN mkdir -p $SRC_DIR
 WORKDIR $SRC_DIR
 COPY --from=builder $BUILDER_SRC_DIR $SRC_DIR
 
-CMD ['npm run $TEST_SCRIPT','npm run $TEST_COVERAGE']
+CMD ['npm run $TEST_SCRIPT','npm run $TEST_COVERAGE', 'npm run $TEST_COVERAGE_REPORT']
 
 FROM duluca/minimal-nginx-web-server:1.13.8-alpine
 ENV BUILDER_SRC_DIR /usr/src
