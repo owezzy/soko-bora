@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    environment:
-      CC_TEST_REPORTER_ID: a298828ead6da0cd571d457ed4a02b5ec14a4508a311c20d504b9ded3674582e
     docker:
       - image: docker:18.04.0-ce-git
     working_directory: /usr/src
