@@ -1,4 +1,4 @@
-import { Observable, of, Subscription } from 'rxjs'
+import { Observable, of, Subscription, throwError } from 'rxjs'
 import { MediaChange } from '@angular/flex-layout'
 import { SafeResourceUrl, SafeValue } from '@angular/platform-browser'
 import { SecurityContext } from '@angular/platform-browser/src/security/dom_sanitization_service'
@@ -7,6 +7,7 @@ import { MaterialModule } from '../material.module'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { RouterTestingModule } from '@angular/router/testing'
+import { HttpErrorResponse } from '@angular/common/http'
 
 const FAKE_SVGS = {
   grocery: '<svg><path id="grocery" name="grocery"></path></svg>',
@@ -74,3 +75,16 @@ export const commonTestingModules: any[] = [
   HttpClientTestingModule,
   RouterTestingModule,
 ]
+
+export function transformError(error:
+HttpErrorResponse | string) {
+  let errorMessage = 'An unknown error has occurred'
+  if (typeof error === 'string') {
+    errorMessage = error
+  } else if (error.error instanceof  ErrorEvent) {
+    errorMessage = `Error! ${error.error.message}`
+  } else if (error.status) {
+    errorMessage = `Request failed with ${error.status} ${error.statusText}`
+  }
+  return throwError(errorMessage)
+}

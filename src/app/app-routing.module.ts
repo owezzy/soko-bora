@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'users', loadChildren: './user/user.module#UserModule' },
   { path: 'pos', loadChildren: './pos/pos.module#PosModule' },
   { path: 'inventory', loadChildren: './inventory/inventory.module#InventoryModule' },
-  { path: '**', component: PageNotFoundComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'login/:redirectUrl', component: LoginComponent },{ path: '**', component: PageNotFoundComponent },
 ]
 
 @NgModule({
