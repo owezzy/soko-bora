@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: a298828ead6da0cd571d457ed4a02b5ec14a4508a311c20d504b9ded3674582e
     docker:
       - image: docker:18.04.0-ce-git
     working_directory: /usr/src
@@ -8,9 +10,33 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-      - store_test_results:
-          path: tests/units
+      - run:
+          name:  Download cc-test-reporter
+          command: |
+            mkdir -p tmp/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+            chmod +x ./tmp/cc-test-reporter
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - cc-test-reporter
+         # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+            - run: npm install
+
+            - save_cache:
+                paths:
+                  - node_modules
+                key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Build Docker Image
           command: |
             docker build -f Dockerfile.integration .
+
+
+
