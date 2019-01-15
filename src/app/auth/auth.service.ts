@@ -1,12 +1,14 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Role } from './role.enum'
-import { BehaviorSubject, observable, Observable, of } from 'rxjs'
-import { HttpClient } from '@angular/common/http'
+import { BehaviorSubject, Observable, of, throwError as observableThrowError } from 'rxjs'
+
 import { sign } from 'fake-jwt-sign'
-import { environment } from '../../environments/environment'
-import { transformError } from '../common/common.testing'
+import { transformError } from '../common/common'
 import * as decode from 'jwt-decode'
 import { catchError, map } from 'rxjs/operators'
+
+import { environment } from '../../environments/environment'
 
 export interface IAuthStatus {
   isAuthenticated: boolean
@@ -53,9 +55,8 @@ export class AuthService {
    private fakeAuthProvider (
      email: string,
      password: string
-   ): Observable<IServerAuthResponse>{
-    if (!email.toLowerCase().endsWith('@test.com'))
-    {
+   ): Observable<IServerAuthResponse> {
+    if (!email.toLowerCase().endsWith('@test.com')) {
       return observableThrowError('Failed to login Email needs to end with @test.com')
     }
 
@@ -78,6 +79,7 @@ export class AuthService {
 
      return of(authResponse)
      }
+
   login(email: string, password: string): Observable<IAuthStatus> {
     this.logout()
 
