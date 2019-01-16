@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment'
 export interface IAuthStatus {
   isAuthenticated: boolean
   userRole: Role
-  userId; string
+  userId: string
 }
 
 interface IServerAuthResponse {
