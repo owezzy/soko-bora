@@ -11,10 +11,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PosModule } from './pos/pos.module'
 import { UserModule } from './user/user.module'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { AuthService } from './auth/auth.service'
+import { AuthService } from './auth/auth.service';
+import { LoginComponent } from './login/login.component'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
+  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
