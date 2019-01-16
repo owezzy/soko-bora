@@ -11,8 +11,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PosModule } from './pos/pos.module'
 import { UserModule } from './user/user.module'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './auth/auth.service'
 import { LoginComponent } from './login/login.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent, LoginComponent],
@@ -21,11 +22,10 @@ import { LoginComponent } from './login/login.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    InventoryModule,
-    PosModule,
-    UserModule,
     HttpClientModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
