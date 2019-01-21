@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms'
 import { AuthService } from '../auth/auth.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Role } from '../auth/role.enum'
+import { EmailValidation, PasswordValidation } from '../common/validations'
 
 @Component({
   selector: 'app-login',
@@ -36,12 +37,8 @@ export class LoginComponent implements OnInit {
 
   buildLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(50),
-      ]],
+      email: ['', EmailValidation],
+      password: ['', PasswordValidation],
     })
   }
 
