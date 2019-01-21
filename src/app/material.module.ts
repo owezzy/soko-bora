@@ -18,7 +18,6 @@ import {
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -26,12 +25,12 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatDialogModule,
   ],
   exports: [
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -39,6 +38,7 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-  ],
+    MatDialogModule,
+      ],
 })
 export class MaterialModule {}
