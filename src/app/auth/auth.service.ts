@@ -9,6 +9,7 @@ import * as decode from 'jwt-decode'
 import { catchError, map } from 'rxjs/operators'
 
 import { environment } from '../../environments/environment'
+import { CacheService } from './cache.service'
 
 export interface IAuthStatus {
   isAuthenticated: boolean
@@ -28,21 +29,25 @@ const defaultAuthStatus = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService extends CacheService {
+
+  authStatus = new BehaviorSubject<IAuthStatus>(
+    this.getItem('authStatus') || defaultStatus
+  )
+
   private readonly authProvider: (
     email: string,
     password: string
   ) => Observable<IServerAuthResponse>
 
-  authStatus = new BehaviorSubject<IAuthStatus>(defaultAuthStatus)
-
   constructor(private httpClient: HttpClient) {
-    // fake login function to simulate roles
-    this.authProvider = this.fakeAuthProvider
+    super()
+    this.authStatus.subscribe(authStatus => this.setItem('authStatus', authStatus))
     // TODO: use auth0 service
     // example of a real login call to server-side
     // this.authProvider = this.exampleAuthService
   }
+  /**/
 // private exampleAuthProvider(
 //   email: string,
 //   password: string
@@ -107,4 +112,19 @@ export class AuthService {
     this.authStatus.next(defaultAuthStatus)
   }
 
+  private setToken(jwt: string) {
+     this.setItem('jwt', jwt)
+  }
+
+  private getDecodedToken(): IAuthStatus {
+    return decode(this.getItem('jwt'))
+  }
+
+  getToken(): string {
+    return this.getItem('jwt') || ''
+  }
+
+  private clearToken() {
+     this.removeItem('jwt')
+  }
 }
