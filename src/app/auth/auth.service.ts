@@ -32,7 +32,7 @@ const defaultAuthStatus = {
 export class AuthService extends CacheService {
 
   authStatus = new BehaviorSubject<IAuthStatus>(
-    this.getItem('authStatus') || defaultStatus
+    this.getItem('authStatus') || defaultAuthStatus
   )
 
   private readonly authProvider: (
@@ -90,6 +90,7 @@ export class AuthService extends CacheService {
 
     const loginResponse = this.authProvider(email, password).pipe(
       map(value => {
+        this.setToken(value.accessToken)
         return decode(value.accessToken) as IAuthStatus
       }),
       catchError(transformError)
@@ -109,6 +110,7 @@ export class AuthService extends CacheService {
   }
 
   logout() {
+    this.clearToken()
     this.authStatus.next(defaultAuthStatus)
   }
 
