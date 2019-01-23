@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -12,10 +12,17 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthService } from './auth/auth.service'
 import { LoginComponent } from './login/login.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SimpleDialogComponent } from './common/simple-dialog/simple-dialog.component'
+import { SimpleDialogComponent } from './common/simple-dialog/simple-dialog.component';
+import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, LoginComponent, SimpleDialogComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    LoginComponent,
+    SimpleDialogComponent],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,7 +33,14 @@ import { SimpleDialogComponent } from './common/simple-dialog/simple-dialog.comp
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
