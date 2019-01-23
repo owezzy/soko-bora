@@ -45,7 +45,7 @@ export class AuthService extends CacheService {
     this.authStatus.subscribe(authStatus => this.setItem('authStatus', authStatus))
     // TODO: use auth0 service
     // example of a real login call to server-side
-    // this.authProvider = this.exampleAuthService
+    this.authProvider = this.fakeAuthProvider
   }
   /**/
 // private exampleAuthProvider(
