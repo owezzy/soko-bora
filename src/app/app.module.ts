@@ -11,9 +11,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthService } from './auth/auth.service'
 import { LoginComponent } from './login/login.component'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SimpleDialogComponent } from './common/simple-dialog/simple-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { SimpleDialogComponent } from './common/simple-dialog/simple-dialog.component'
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
+import { LayoutModule } from '@angular/cdk/layout'
+import { SideNavMenuComponentComponent } from './side-nav-menu-component/side-nav-menu-component.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
     HomeComponent,
     PageNotFoundComponent,
     LoginComponent,
-    SimpleDialogComponent],
+    SimpleDialogComponent,
+    SideNavMenuComponentComponent,
+    ],
 
   imports: [
     BrowserModule,
@@ -31,7 +35,8 @@ import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
     HttpClientModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LayoutModule,
   ],
   providers: [
     AuthService,
