@@ -8,7 +8,6 @@ import {
 import { Observable } from 'rxjs'
 import { AuthService, IAuthStatus } from './auth.service'
 import { Route } from '@angular/compiler/src/core'
-import { Role } from './role.enum'
 import { UiService } from '../common/ui.service'
 
 @Injectable({
