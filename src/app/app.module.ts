@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { SimpleDialogComponent } from './common/simple-dialog/simple-dialog.component'
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
 import { LayoutModule } from '@angular/cdk/layout'
-import { SideNavMenuComponentComponent } from './side-nav-menu-component/side-nav-menu-component.component'
+import { SideNavMenuComponent } from './side-nav-menu-component/side-nav-menu.component'
 
 @NgModule({
   declarations: [
@@ -24,9 +24,8 @@ import { SideNavMenuComponentComponent } from './side-nav-menu-component/side-na
     PageNotFoundComponent,
     LoginComponent,
     SimpleDialogComponent,
-    SideNavMenuComponentComponent,
+    SideNavMenuComponent,
     ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
