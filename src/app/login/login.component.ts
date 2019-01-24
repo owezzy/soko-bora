@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       .subscribe(authStatus => {
         if (authStatus.isAuthenticated) {
           this.uiService.showToast(`Welcome! Role: ${authStatus.userRole}`)
-          this.router.navigate(this.redirectUrl || this.homeRoutePerRole(authStatus.userRole))
+          this.router.navigate([this.redirectUrl || this.homeRoutePerRole(authStatus.userRole)])
         }
 
       }, error => (this.loginError = error))
