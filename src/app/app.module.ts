@@ -16,6 +16,7 @@ import { SimpleDialogComponent } from './common/simple-dialog/simple-dialog.comp
 import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
 import { LayoutModule } from '@angular/cdk/layout'
 import { SideNavMenuComponent } from './side-nav-menu-component/side-nav-menu.component'
+import { AuthGuard } from './auth/auth-guard.guard'
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SideNavMenuComponent } from './side-nav-menu-component/side-nav-menu.co
   ],
   providers: [
     AuthService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
