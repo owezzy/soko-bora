@@ -9,15 +9,15 @@ import {
   MatToolbarModule,
 } from '@angular/material';
 
-import { SideNavMenuComponentComponent } from './side-nav-menu-component.component';
+import { SideNavMenuComponent } from './side-nav-menu.component';
 
-describe('SideNavMenuComponentComponent', () => {
-  let component: SideNavMenuComponentComponent;
-  let fixture: ComponentFixture<SideNavMenuComponentComponent>;
+describe('SideNavMenuComponent', () => {
+  let component: SideNavMenuComponent;
+  let fixture: ComponentFixture<SideNavMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SideNavMenuComponentComponent],
+      declarations: [SideNavMenuComponent],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -31,7 +31,7 @@ describe('SideNavMenuComponentComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SideNavMenuComponentComponent);
+    fixture = TestBed.createComponent(SideNavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
