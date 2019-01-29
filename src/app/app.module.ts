@@ -25,6 +25,7 @@ import { AuthGuard } from './auth/auth-guard.guard'
     PageNotFoundComponent,
     LoginComponent,
     SimpleDialogComponent,
+    SideNavMenuComponent
     ],
   imports: [
     BrowserModule,
