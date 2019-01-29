@@ -39,7 +39,7 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatDialogModule,
-      ],
+    MatDialogModule
+  ],
 })
 export class MaterialModule {}
