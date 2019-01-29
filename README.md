@@ -1,5 +1,7 @@
 # SokoBora
-Soko Bora is a web application to manage and record a grocery store activities. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1 using npx command.
+> [![Coverage Status](https://coveralls.io/repos/github/owezzy/soko-bora/badge.svg)](https://coveralls.io/github/owezzy/soko-bora)
+
+ Soko Bora is a web application to manage and record a grocery store activities. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1 using npx command.
 
 
 ## Getting Started
