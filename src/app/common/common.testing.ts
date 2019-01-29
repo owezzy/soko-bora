@@ -8,6 +8,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 import { HttpErrorResponse } from '@angular/common/http'
+import { AuthService } from '../auth/auth.service'
+import { AuthServiceFake } from '../auth/auth.service.fake'
+import { UiService } from './ui.service'
 
 const FAKE_SVGS = {
   grocery: '<svg><path id="grocery" name="grocery"></path></svg>',
@@ -17,6 +20,7 @@ export class ObservableMediaFake {
   isActive(query: string): boolean {
     return false
   }
+
   asObservable(): Observable<MediaChange> {
     return of({} as MediaChange)
   }
@@ -24,7 +28,7 @@ export class ObservableMediaFake {
   subscribe(
     next?: (value: MediaChange) => void,
     error?: (error: any) => void,
-    complete?: () => void
+    complete?: () => void,
   ): Subscription {
     return new Subscription()
   }
@@ -32,11 +36,13 @@ export class ObservableMediaFake {
 
 export class MatIconRegistryFake {
   _document = document
+
   addSvgIcon(iconName: string, url: SafeResourceUrl): this {
-     // this.addSvgIcon('grocery', 'grocery.svg')
+    // this.addSvgIcon('grocery', 'grocery.svg')
     return this
   }
-  getNamedSvgIcon(name: string, namespace: string = ''): Observable<SVGAElement > {
+
+  getNamedSvgIcon(name: string, namespace: string = ''): Observable<SVGAElement> {
     // @ts-ignore
     return of(this._svgElementFromString(FAKE_SVGS.grocery))
   }
@@ -59,13 +65,12 @@ export class DomSanitizerFake {
   bypassSecurityTrustResourceUrl(url: string): SafeResourceUrl {
     return {} as SafeResourceUrl
   }
+
   sanitize(context: SecurityContext, value: SafeValue | string | null):
-  string | null {
-    return  value ? value.toString() : null
+    string | null {
+    return value ? value.toString() : null
   }
 }
-
-export const commonTestingProviders: any[] = []
 
 export const commonTestingModules: any[] = [
   FormsModule,
@@ -74,4 +79,8 @@ export const commonTestingModules: any[] = [
   NoopAnimationsModule,
   HttpClientTestingModule,
   RouterTestingModule,
+]
+
+export const commonTestingProviders: any[] = [
+  { provide: AuthService, useClass: AuthServiceFake }, UiService,
 ]

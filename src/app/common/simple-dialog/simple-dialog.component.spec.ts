@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { SimpleDialogComponent } from './simple-dialog.component'
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material'
+import { commonTestingModules } from '../common.testing'
 
 describe('SimpleDialogComponent', () => {
   let component: SimpleDialogComponent
@@ -8,7 +10,15 @@ describe('SimpleDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleDialogComponent ]
+      declarations: [ SimpleDialogComponent ],
+      providers: [{
+        provide: MatDialogRef,
+        useValue: {}
+      }, {
+        provide: MAT_DIALOG_DATA,
+        useValue: {}
+      }],
+      imports: commonTestingModules,
     })
     .compileComponents()
   }))
