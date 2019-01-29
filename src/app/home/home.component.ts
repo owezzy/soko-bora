@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { AuthService } from '../auth/auth.service'
 
 @Component({
   selector: 'app-home',
@@ -10,14 +11,25 @@ import { Component, OnInit } from '@angular/core'
     `,
   ],
   template: `
-    <div fxLayout="column" fxLayoutAlign="center center">
+    <div *ngIf="displayLogin">
+      <app-login></app-login>
+    </div>
+    <div *ngIf="!displayLogin">
       <span class="mat-display-2">Welcome to Soko Bora</span>
-      <button mat-raised-button color="primary" routerLink="/manager">Login as Manager</button>
     </div>
   `,
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  private  _displayLogin = true
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.authStatus.subscribe(
+      authStatus => (this._displayLogin = !authStatus.isAuthenticated)
+    )
+  }
+
+  get displayLogin() {
+    return this._displayLogin
+  }
 }

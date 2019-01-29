@@ -7,6 +7,8 @@ import { ManagerComponent } from './manager.component'
 import { ReceiptLookupComponent } from './receipt-lookup/receipt-lookup.component'
 import { UserManagementComponent } from './user-management/user-management.component'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { AuthGuard } from '../auth/auth-guard.guard'
+import { AuthService } from '../auth/auth.service'
 
 @NgModule({
   declarations: [
@@ -16,5 +18,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     ReceiptLookupComponent,
   ],
   imports: [CommonModule, ManagerRoutingModule, MaterialModule, FlexLayoutModule],
+  providers: [AuthGuard, AuthService]
 })
 export class ManagerModule {}
