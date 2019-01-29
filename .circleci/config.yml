@@ -9,7 +9,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: false
       - store_test_results:
-          path: tests/units
+          path: covarage
       - run:
           name: Build Docker Image
           command: |
