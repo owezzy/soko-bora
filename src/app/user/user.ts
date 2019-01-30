@@ -19,10 +19,10 @@ export interface UserInterface {
     county: string
     zip: string
   }
-  phone: IPhone[]
+  phone: PhoneInterface[]
 }
 
-export interface IPhone {
+export interface PhoneInterface {
   type: string
   number: string
   id: number
