@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { MaterialModule } from '../material.module'
+import { AppMaterialModule } from '../app.material.module'
 import { ManagerHomeComponent } from './manager-home/manager-home.component'
 import { ManagerRoutingModule } from './manager-routing.module'
 import { ManagerComponent } from './manager.component'
@@ -17,7 +17,7 @@ import { AuthService } from '../auth/auth.service'
     UserManagementComponent,
     ReceiptLookupComponent,
   ],
-  imports: [CommonModule, ManagerRoutingModule, MaterialModule, FlexLayoutModule],
+  imports: [CommonModule, ManagerRoutingModule, AppMaterialModule, FlexLayoutModule],
   providers: [AuthGuard, AuthService]
 })
 export class ManagerModule {}

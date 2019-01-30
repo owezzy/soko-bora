@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
-import { MaterialModule } from './material.module'
+import { AppMaterialModule } from './app.material.module'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 import { FlexLayoutModule } from '@angular/flex-layout'
@@ -31,7 +31,7 @@ import { AuthGuard } from './auth/auth-guard.guard'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    AppMaterialModule,
     HttpClientModule,
     FlexLayoutModule,
     FormsModule,

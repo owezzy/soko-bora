@@ -3,7 +3,7 @@ import { MediaChange } from '@angular/flex-layout'
 import { SafeResourceUrl, SafeValue } from '@angular/platform-browser'
 import { SecurityContext } from '@angular/platform-browser/src/security/dom_sanitization_service'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { MaterialModule } from '../material.module'
+import { AppMaterialModule } from '../app.material.module'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { RouterTestingModule } from '@angular/router/testing'
@@ -75,7 +75,7 @@ export class DomSanitizerFake {
 export const commonTestingModules: any[] = [
   FormsModule,
   ReactiveFormsModule,
-  MaterialModule,
+  AppMaterialModule,
   NoopAnimationsModule,
   HttpClientTestingModule,
   RouterTestingModule,
