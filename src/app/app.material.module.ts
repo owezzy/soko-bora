@@ -42,4 +42,4 @@ import {
     MatDialogModule
   ],
 })
-export class MaterialModule {}
+export class AppMaterialModule {}
