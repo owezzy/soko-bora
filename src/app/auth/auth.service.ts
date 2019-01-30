@@ -11,15 +11,15 @@ import { catchError, map } from 'rxjs/operators'
 import { environment } from '../../environments/environment'
 import { CacheService } from './cache.service'
 
-export interface IAuthStatus {
+export interface AuthStatusInterface {
   isAuthenticated: boolean
   userRole: Role
   userId: string
 }
 
 export interface IAuthService {
-  authStatus: BehaviorSubject<IAuthStatus>
-  login(email: string, password: string): Observable<IAuthStatus>
+  authStatus: BehaviorSubject<AuthStatusInterface>
+  login(email: string, password: string): Observable<AuthStatusInterface>
   logout()
   getToken(): string
 }
@@ -38,7 +38,7 @@ export const defaultAuthStatus = {
 })
 export class AuthService extends CacheService implements IAuthService {
 
-  authStatus = new BehaviorSubject<IAuthStatus>(
+  authStatus = new BehaviorSubject<AuthStatusInterface>(
     this.getItem('authStatus') || defaultAuthStatus
   )
 
@@ -80,7 +80,7 @@ export class AuthService extends CacheService implements IAuthService {
          : email.toLowerCase().includes('clerk')
            ? Role.Clerk
            : email.toLowerCase().includes('manager') ? Role.Manager : Role.None,
-     } as IAuthStatus
+     } as AuthStatusInterface
 
      const authResponse = {
        accessToken: sign(authStatus, 'secret', {
@@ -92,13 +92,13 @@ export class AuthService extends CacheService implements IAuthService {
      return of(authResponse)
      }
 
-  login(email: string, password: string): Observable<IAuthStatus> {
+  login(email: string, password: string): Observable<AuthStatusInterface> {
     this.logout()
 
     const loginResponse = this.authProvider(email, password).pipe(
       map(value => {
         this.setToken(value.accessToken)
-        return decode(value.accessToken) as IAuthStatus
+        return decode(value.accessToken) as AuthStatusInterface
       }),
       catchError(transformError)
     )
@@ -125,7 +125,7 @@ export class AuthService extends CacheService implements IAuthService {
      this.setItem('jwt', jwt)
   }
 
-  private getDecodedToken(): IAuthStatus {
+  private getDecodedToken(): AuthStatusInterface {
     return decode(this.getItem('jwt'))
   }
 
