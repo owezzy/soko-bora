@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
 import {
   MatAutocompleteModule,
   MatDatepickerModule,
@@ -7,29 +6,30 @@ import {
   MatNativeDateModule,
   MatRadioModule,
   MatStepperModule,
-  MatDividerModule
+  MatSelectModule, MatDividerModule,
+
 } from '@angular/material'
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatDividerModule,
     MatLineModule,
     MatNativeDateModule,
     MatRadioModule,
+    MatSelectModule,
     MatStepperModule
   ],
   exports: [
-    CommonModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatDividerModule,
     MatLineModule,
     MatNativeDateModule,
     MatRadioModule,
+    MatSelectModule,
     MatStepperModule
   ]
 })
