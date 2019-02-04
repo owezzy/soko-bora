@@ -93,4 +93,100 @@
       </div>
     </form>
   </mat-step>
+  <mat-step [stepControl]="userForm">
+    <form [formGroup]="userForm">
+      <ng-template matStepLabel>Contact Information</ng-template>
+      <div class="stepContent">
+        <div fxLayout="row" fxLayout.lt-sm="column" [formGroup]="userForm.get('address')" fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Address Line 1" aria-label="Address Line 1" formControlName="line1">
+            <mat-error *ngIf="userForm.get('address').get('line1').hasError('required')">
+              Line 1 is required
+            </mat-error>
+            <mat-error *ngIf="userForm.get('address').get('line1').hasError('minLength')">
+              Must be at least 2 characters
+            </mat-error>
+            <mat-error *ngIf="userForm.get('address').get('line1').hasError('maxLength')">
+              Can't exceed 50 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" [formGroup]="userForm.get('address')" fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Address Line 2" aria-label="Address Line 2" formControlName="line2">
+            <mat-hint>Optional</mat-hint>
+            <mat-error *ngIf="userForm.get('address').get('line2').hasError('minLength')">
+              Must be at least 2 characters
+            </mat-error>
+            <mat-error *ngIf="userForm.get('address').get('line2').hasError('maxLength')">
+              Can't exceed 50 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" [formGroup]="userForm.get('address')" fxLayoutGap="10px">
+          <mat-form-field fxFlex="40%">
+            <input matInput placeholder="City" aria-label="City" formControlName="city">
+            <mat-error *ngIf="userForm.get('address').get('city').hasError('required')">
+              City is required
+            </mat-error>
+            <mat-error *ngIf="userForm.get('address').get('city').hasError('minLength')">
+              Must be at least 2 characters
+            </mat-error>
+            <mat-error *ngIf="userForm.get('address').get('city').hasError('maxLength')">
+              Can't exceed 50 characters
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="30%">
+            <input type="text" placeholder="State" aria-label="State" matInput formControlName="state" [matAutocomplete]="stateAuto">
+            <mat-autocomplete #stateAuto="matAutocomplete">
+              <mat-option *ngFor="let state of states | async" [value]="state.name">
+                {{ state.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="userForm.get('address').get('state').hasError('required')">
+              State is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="30%">
+            <input matInput placeholder="Zip Code" aria-label="Zip Code" formControlName="zip">
+            <mat-error *ngIf="userForm.get('address').get('zip').invalid">
+              A valid Zip Code is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column">
+          <mat-list formArrayName="phones">
+            <h2 mat-subheader>Phone Number(s)</h2>
+            <button mat-button (click)="this.addPhone()">
+              <mat-icon>add</mat-icon>Add Phone</button>
+            <mat-list-item *ngFor="let position of this.phonesArray.controls let i=index" [formGroupName]="i">
+              <mat-form-field fxFlex="100px">
+                <mat-select placeholder="Type" formControlName="type">
+                  <mat-option *ngFor="let type of this.PhoneTypes" [value]="type">
+                    {{ type }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field fxFlex fxFlexOffset="10px">
+                <input matInput type="text" placeholder="Number" formControlName="number">
+                <mat-error *ngIf="this.phonesArray.controls[i].invalid">
+                  A valid phone number is required
+                </mat-error>
+              </mat-form-field>
+              <button fxFlex="33px" mat-icon-button (click)="this.phonesArray.removeAt(i)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+      <div fxLayout="row" class="margin-top">
+        <button mat-button matStepperPrevious color="accent">Back</button>
+        <div class="flex-spacer"></div>
+        <div *ngIf="userError" class="mat-caption error">{{userError}}</div>
+        <button mat-raised-button matStepperNext color="accent">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
 </mat-horizontal-stepper>
