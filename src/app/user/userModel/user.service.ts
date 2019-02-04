@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
-import { CacheService } from '../auth/cache.service'
+import { CacheService } from '../../auth/cache.service'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { User, UserInterface } from './user'
-import { AuthService, AuthStatusInterface } from '../auth/auth.service'
+import { AuthService, AuthStatusInterface } from '../../auth/auth.service'
 import { HttpClient } from '@angular/common/http'
 import { catchError } from 'rxjs/operators'
-import { transformError } from '../common/common'
-import { environment } from '../../environments/environment'
+import { transformError } from '../../common/common'
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root',

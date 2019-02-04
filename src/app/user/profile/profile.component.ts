@@ -5,9 +5,9 @@ import { CountyInterface, PhoneType } from './data'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { Router } from '@angular/router'
-import { UserService } from '../user.service'
+import { UserService } from '../userModel/user.service'
 import { AuthService } from '../../auth/auth.service'
-import { UserInterface } from '../user'
+import { UserInterface } from '../userModel/user'
 import {
   BirthDateValidation, CountyZipCodeValidation,
   EmailValidation,

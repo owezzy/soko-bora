@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Role } from './role.enum'
 import { BehaviorSubject, Observable, of, throwError as observableThrowError } from 'rxjs'
 
-import { sign } from 'fake-jwt-sign'
+import { sign } from 'fake-jwt-sign' // for fakeAuthProvider
 import { transformError } from '../common/common'
 import * as decode from 'jwt-decode'
 import { catchError, map } from 'rxjs/operators'
@@ -17,14 +17,14 @@ export interface AuthStatusInterface {
   userId: string
 }
 
-export interface IAuthService {
+export interface AuthServiceInterface {
   authStatus: BehaviorSubject<AuthStatusInterface>
   login(email: string, password: string): Observable<AuthStatusInterface>
   logout()
   getToken(): string
 }
 
-interface IServerAuthResponse {
+interface ServerAuthResponseInterface {
   accessToken: string
 }
 
@@ -36,7 +36,7 @@ export const defaultAuthStatus = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService extends CacheService implements IAuthService {
+export class AuthService extends CacheService implements AuthServiceInterface {
 
   authStatus = new BehaviorSubject<AuthStatusInterface>(
     this.getItem('authStatus') || defaultAuthStatus
@@ -45,7 +45,7 @@ export class AuthService extends CacheService implements IAuthService {
   private readonly authProvider: (
     email: string,
     password: string
-  ) => Observable<IServerAuthResponse>
+  ) => Observable<ServerAuthResponseInterface>
 
   constructor(private httpClient: HttpClient) {
     super()
@@ -58,8 +58,8 @@ export class AuthService extends CacheService implements IAuthService {
 // private exampleAuthProvider(
 //   email: string,
 //   password: string
-// ): Observable<IServerAuthResponse> {
-//   return this.httpClient.post<IServerAuthResponse>(`${environment.baseUrl}/v1/login`, {
+// ): Observable<ServerAuthResponseInterface> {
+//   return this.httpClient.post<ServerAuthResponseInterface>(`${environment.baseUrl}/v1/login`, {
 //     email: email,
 //     password: password,
 //   })
@@ -67,7 +67,7 @@ export class AuthService extends CacheService implements IAuthService {
    private fakeAuthProvider (
      email: string,
      password: string
-   ): Observable<IServerAuthResponse> {
+   ): Observable<ServerAuthResponseInterface> {
     if (!email.toLowerCase().endsWith('@test.com')) {
       return observableThrowError('Failed to login Email needs to end with @test.com')
     }
@@ -87,7 +87,7 @@ export class AuthService extends CacheService implements IAuthService {
          expiresIn: '1h',
          algorithm: 'none',
        }),
-     } as IServerAuthResponse
+     } as ServerAuthResponseInterface
 
      return of(authResponse)
      }
