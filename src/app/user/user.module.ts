@@ -8,9 +8,10 @@ import { UserMaterialModule } from './user-material.module'
 import { AppMaterialModule } from '../app.material.module'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { ViewUserComponent } from './view-user/view-user.component'
 
 @NgModule({
-  declarations: [ProfileComponent, LogoutComponent],
+  declarations: [ViewUserComponent, ProfileComponent, LogoutComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -19,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule],
-  providers: [User],
 })
 export class UserModule {
 }

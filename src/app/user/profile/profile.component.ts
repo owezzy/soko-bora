@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
 
     this.states = this.userForm
       .get('address')
-      .get('state')
+      .get('county')
       .valueChanges.pipe(startWith(''), map(value => CountiesFilter(value)))
   }
 

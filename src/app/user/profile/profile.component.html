@@ -9,7 +9,7 @@
         <div fxLayout="row" fxLayout.lt-sm="column"
              [formGroup]="userForm.get('name')" fxLayoutGap="10px">
           <mat-form-field fxFlex="40%">
-            <input matInput placeholder="First Name" aria-label="First Name" aria-label="First Name"
+            <input matInput placeholder="First Name"  aria-label="First Name"
                    formControlName="first">
             <mat-error *ngIf="userForm.get('name').get('first').hasError('required')">
               First Name is Required
@@ -29,12 +29,11 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field fxFlex="40%">
-            <input matInput placeholder="Last Name" aria-label="Last Name"
-                   formControlName="last">
-            <mat-error *ngIf="userForm.get('last').get('last').hasError('required')">
+            <input matInput placeholder="Last Name" aria-label="Last Name" formControlName="last">
+            <mat-error *ngIf="userForm.get('name').get('last').hasError('required')">
               Last Name is Required
             </mat-error>
-            <mat-error *ngIf="userForm.get('last').get('last').hasError('minLength')">
+            <mat-error *ngIf="userForm.get('name').get('last').hasError('minLength')">
               Must be at least 2 characters
             </mat-error>
             <mat-error *ngIf="userForm.get('name').get('last').hasError('maxLength')">
@@ -137,14 +136,15 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field fxFlex="30%">
-            <input type="text" placeholder="State" aria-label="State" matInput formControlName="state" [matAutocomplete]="stateAuto">
-            <mat-autocomplete #stateAuto="matAutocomplete">
-              <mat-option *ngFor="let state of states | async" [value]="state.name">
-                {{ state.name }}
+            <input type="text" placeholder="County" aria-label="County"
+                   matInput formControlName="county" [matAutocomplete]="countyAuto">
+            <mat-autocomplete #countyAuto="matAutocomplete">
+              <mat-option *ngFor="let county of counties | async" [value]="county.name">
+                {{ county.name }}
               </mat-option>
             </mat-autocomplete>
-            <mat-error *ngIf="userForm.get('address').get('state').hasError('required')">
-              State is required
+            <mat-error *ngIf="userForm.get('address').get('county').hasError('required')">
+              County is required
             </mat-error>
           </mat-form-field>
           <mat-form-field fxFlex="30%">
