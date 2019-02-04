@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core'
 import { Role as UserRole } from '../../auth/role.enum'
 import { $enum } from 'ts-enum-util'
-import { CountyInterface, PhoneType } from './data'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { CountiesFilter, CountyInterface, PhoneType } from './data'
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { Router } from '@angular/router'
 import { UserService } from '../userModel/user.service'
 import { AuthService } from '../../auth/auth.service'
-import { UserInterface } from '../userModel/user'
+import { PhoneInterface, UserInterface } from '../userModel/user'
 import {
   BirthDateValidation, CountyZipCodeValidation,
-  EmailValidation,
+  EmailValidation, KenyaPhoneNumberValidation,
   OneCharValidation,
   OptionalTextValidation,
   RequiredTextValidation,
 } from '../../common/validations'
+import { map, startWith } from 'rxjs/operators'
 
 @Component({
   selector: 'app-profile',
@@ -75,11 +76,58 @@ export class ProfileComponent implements OnInit {
         city: [(user && user.address && user.address.city) || '', RequiredTextValidation],
         county: [(user && user.address && user.address.county) || '', RequiredTextValidation],
         zip: [(user && user.address && user.address.zip) || '', CountyZipCodeValidation],
+      }),
+      phones: this.formBuilder.array(this.buildPhoneArray(user ? user.phone : [])),
+    })
 
+    this.states = this.userForm
+      .get('address')
+      .get('state')
+      .valueChanges.pipe(startWith(''), map(value => CountiesFilter(value)))
+  }
 
+  addPhone() {
+    this.phonesArray.push(
+      this.buildPhoneFormControl(this.userForm.get('phones').value.length + 1),
+    )
+  }
 
-  })
+  get phonesArray(): FormArray {
+    return <FormArray>this.userForm.get('phones')
+  }
+
+  private buildPhoneArray(phones: PhoneInterface[]) {
+    const groups = []
+
+    if (!phones || (phones && phones.length === 0)) {
+      groups.push(this.buildPhoneFormControl(1))
+    } else {
+      phones.forEach(p => {
+        groups.push(this.buildPhoneFormControl(p.id, p.type, p.number))
+      })
+    }
+    return groups
+  }
+
+  private buildPhoneFormControl(id, type?: string, number?: string) {
+    return this.formBuilder.group({
+      id: [id],
+      type: [type || '', Validators.required],
+      number: [number || '', KenyaPhoneNumberValidation],
     })
   }
 
+  get dateOfBirth() {
+    return this.userForm.get('dateOfBirth').value || new Date()
+  }
+
+  get age() {
+    return new Date().getFullYear() - this.dateOfBirth.getFullYear()
+  }
+
+  async save(form: FormGroup) {
+    this.userService
+      .updateUser(form.value)
+      .subscribe(res => this.buildUserForm(res), err => (this.userError = err))
+  }
 }
