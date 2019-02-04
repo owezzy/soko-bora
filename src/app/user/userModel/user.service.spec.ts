@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing'
 
-import { UserService } from './user.service'
+import { UserService } from './userModel/user.service'
 
 describe('UserService', () => {
   beforeEach(() => TestBed.configureTestingModule({}))

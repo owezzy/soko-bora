@@ -43,7 +43,55 @@
 
           </mat-form-field>
         </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50%">
+            <input matInput placeholder="Date Of Birth" aria-label="Date of Birth"
+                   formControlName="dateOfBirth" [matDatepicker]="dateOfBirthPicker">
+            <mat-hint *ngIf="userForm.get('dateOfBirth').touched">{{this.age}} years(s) old</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfBirthPicker></mat-datepicker>
+            <mat-error *ngIf="userForm.get('dateOfBirth').invalid">
+              Date must be within the last 100 years
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="50%">
+            <input matInput placeholder="E-mail" aria-label="E-mail" formControlName="email">
+            <mat-hint>Only your manager can update your e-mail.</mat-hint>
+            <mat-error *ngIf="userForm.get('email').invalid">
+              A valid E-mail is required
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" class="margin-top" fxLayoutGap="10px">
+          <div fxFlex>
+            <mat-label class="mat-body-1">Role</mat-label>
+            <mat-radio-group formControlName="role">
+              <mat-radio-button style="margin-right: 10px;" value="this.Role.None">
+                <span class="mat-body-1">None</span>
+              </mat-radio-button>
+              <mat-radio-button style="margin-right: 10px;" value="this.Role.Cashier">
+                <span class="mat-body-1">Cashier</span>
+              </mat-radio-button>
+              <mat-radio-button style="margin-right: 10px;" value="this.Role.Clerk">
+                <span class="mat-body-1">Clerk</span>
+              </mat-radio-button>
+              <mat-radio-button style="margin-right: 10px;" value="this.Role.Manager">
+                <span class="mat-body-1">Manager</span>
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="userForm.get('role').hasError('required') && userForm.get('role').touched">
+              <span class="mat-caption">Role is required</span>
+            </mat-error>
+          </div>
+        </div>
+        <div fxLayout="row" class="margin-top">
+          <div class="flex-spacer"></div>
+          <div *ngIf="userError" class="mat-caption error">{{userError}}</div>
+          <button mat-raised-button matStepperNext color="accent">Next</button>
+        </div>
       </div>
+
     </form>
 
   </mat-step>
