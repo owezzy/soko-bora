@@ -9,9 +9,11 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthGuard } from '../auth/auth-guard.guard'
 import { AuthService } from '../auth/auth.service'
-import { ViewUserComponent } from '../user/view-user/view-user.component';
 import { UserTableComponent } from './user-table/user-table.component'
 import { UserResolve } from '../user/userModel/user.resolve'
+import { SharedComponentsModule } from '../shared-components.module'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { UserService } from '../user/userModel/user.service'
 
 @NgModule({
   declarations: [
@@ -26,9 +28,11 @@ import { UserResolve } from '../user/userModel/user.resolve'
     ManagerRoutingModule,
     AppMaterialModule,
     FlexLayoutModule,
-    ViewUserComponent
+    SharedComponentsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthGuard, AuthService, UserResolve],
+  providers: [AuthGuard, AuthService, UserService, UserResolve],
 })
 export class ManagerModule {
 }
