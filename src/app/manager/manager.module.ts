@@ -9,7 +9,8 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthGuard } from '../auth/auth-guard.guard'
 import { AuthService } from '../auth/auth.service'
-import { ViewUserComponent } from '../user/view-user/view-user.component'
+import { ViewUserComponent } from '../user/view-user/view-user.component';
+import { UserTableComponent } from './user-table/user-table.component'
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ViewUserComponent } from '../user/view-user/view-user.component'
     ManagerComponent,
     UserManagementComponent,
     ReceiptLookupComponent,
+    UserTableComponent,
   ],
   imports: [
     CommonModule,
