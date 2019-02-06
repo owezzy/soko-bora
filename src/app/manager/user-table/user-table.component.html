@@ -1,3 +1,4 @@
-<p>
-  user-table works!
-</p>
+<a mat-button mat-icon-button [routerLink]="['/manager/users',
+ { outlets: { detail: ['user', {userId: 'fakeid'}] } }]" skipLocationChange>
+  <mat-icon>Visibility</mat-icon>
+</a>
