@@ -9,6 +9,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthGuard } from '../auth/auth-guard.guard'
 import { AuthService } from '../auth/auth.service'
+import { ViewUserComponent } from '../user/view-user/view-user.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,14 @@ import { AuthService } from '../auth/auth.service'
     UserManagementComponent,
     ReceiptLookupComponent,
   ],
-  imports: [CommonModule, ManagerRoutingModule, AppMaterialModule, FlexLayoutModule],
-  providers: [AuthGuard, AuthService]
+  imports: [
+    CommonModule,
+    ManagerRoutingModule,
+    AppMaterialModule,
+    FlexLayoutModule,
+    ViewUserComponent
+  ],
+  providers: [AuthGuard, AuthService],
 })
-export class ManagerModule {}
+export class ManagerModule {
+}
