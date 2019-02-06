@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   Role = UserRole
   PhoneTypes = $enum(PhoneType).getKeys()
   userForm: FormGroup
-  states: Observable<CountyInterface[]>
+  counties: Observable<CountyInterface[]>
   userError = ''
   currentUserRole = this.Role.None
 
@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
       phones: this.formBuilder.array(this.buildPhoneArray(user ? user.phone : [])),
     })
 
-    this.states = this.userForm
+    this.counties = this.userForm
       .get('address')
       .get('county')
       .valueChanges.pipe(startWith(''), map(value => CountiesFilter(value)))
