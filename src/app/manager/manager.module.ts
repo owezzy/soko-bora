@@ -11,6 +11,7 @@ import { AuthGuard } from '../auth/auth-guard.guard'
 import { AuthService } from '../auth/auth.service'
 import { ViewUserComponent } from '../user/view-user/view-user.component';
 import { UserTableComponent } from './user-table/user-table.component'
+import { UserResolve } from '../user/userModel/user.resolve'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { UserTableComponent } from './user-table/user-table.component'
     FlexLayoutModule,
     ViewUserComponent
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, UserResolve],
 })
 export class ManagerModule {
 }
