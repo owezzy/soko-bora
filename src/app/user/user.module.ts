@@ -3,15 +3,14 @@ import { NgModule } from '@angular/core'
 import { UserRoutingModule } from './user-routing.module'
 import { ProfileComponent } from './profile/profile.component'
 import { LogoutComponent } from './logout/logout.component'
-import { User } from './userModel/user'
 import { UserMaterialModule } from './user-material.module'
 import { AppMaterialModule } from '../app.material.module'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { ViewUserComponent } from './view-user/view-user.component'
+import { SharedComponentsModule } from '../shared-components.module'
 
 @NgModule({
-  declarations: [ViewUserComponent, ProfileComponent, LogoutComponent],
+  declarations: [ ProfileComponent, LogoutComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -19,7 +18,8 @@ import { ViewUserComponent } from './view-user/view-user.component'
     AppMaterialModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    SharedComponentsModule],
 })
 export class UserModule {
 }
