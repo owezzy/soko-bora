@@ -54,4 +54,21 @@ export class UserService extends CacheService {
     )
     return updateResponse
   }
+
+  getUsers(pageSize: number, searchText = '', pagesToSkip = 0):
+    Observable<UsersInterface> {
+      return this.httpClient.get<UsersInterface>(`${environment.baseUrl}/v1/users`,
+      {
+        params: {
+          search: searchText,
+          offset: pagesToSkip.toString(),
+          limit: pageSize.toString(),
+        },
+      })
+  }
+}
+
+export interface UsersInterface {
+  items: UserInterface[]
+  total: number
 }
