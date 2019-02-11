@@ -8,10 +8,25 @@ import { catchError } from 'rxjs/operators'
 import { transformError } from '../../common/common'
 import { environment } from '../../../environments/environment'
 
+export interface UsersInterface {
+  items: UserInterface[]
+  total: number
+}
+
+export interface UserServiceInterface {
+  currentUser: BehaviorSubject<UserInterface>
+  getCurrentUser(): Observable<UserInterface>
+  getUser(id): Observable<UserInterface>
+  updateUser(user: UserInterface): Observable<UserInterface>
+  getUsers(pageSize: number, searchText: string, pagesToSkip: number):
+    Observable<UsersInterface>
+}
+
+
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends CacheService {
+export class UserService extends CacheService implements UserServiceInterface {
   currentUser = new BehaviorSubject<UserInterface>(this.getItem('user') || new User())
   private currentAuthStatus: AuthStatusInterface
 
@@ -68,7 +83,3 @@ export class UserService extends CacheService {
   }
 }
 
-export interface UsersInterface {
-  items: UserInterface[]
-  total: number
-}
