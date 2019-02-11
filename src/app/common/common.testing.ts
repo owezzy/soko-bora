@@ -14,6 +14,7 @@ import { UiService } from './ui.service'
 import { UserService } from '../user/userModel/user.service'
 import { UserServiceFake } from '../user/userModel/user.service.fake'
 import { SharedComponentsModule } from '../shared-components.module'
+import { UserMaterialModule } from '../user/user-material.module'
 
 const FAKE_SVGS = {
   grocery: '<svg><path id="grocery" name="grocery"></path></svg>',
@@ -83,6 +84,7 @@ export const commonTestingModules: any[] = [
   HttpClientTestingModule,
   RouterTestingModule,
   SharedComponentsModule,
+  UserMaterialModule,
 ]
 
 export const commonTestingProviders: any[] = [
