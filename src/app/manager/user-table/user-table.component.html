@@ -14,7 +14,7 @@
   </form>
   <div class="mat-elevation-z8">
     <div class="loading-shade" *ngIf="isLoadingResults">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <mat-spinner *ngIf="isLoadingResults" fxFlex></mat-spinner>
       <div class="error" *ngIf="hasError">
         {{errorText}}
       </div>
