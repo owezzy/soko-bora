@@ -8,8 +8,12 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
   MatToolbarModule,
 } from '@angular/material'
 
@@ -27,6 +31,10 @@ import {
     MatSnackBarModule,
     MatToolbarModule,
     MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -39,7 +47,11 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
 })
 export class AppMaterialModule {}
