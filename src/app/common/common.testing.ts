@@ -11,6 +11,9 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { AuthService } from '../auth/auth.service'
 import { AuthServiceFake } from '../auth/auth.service.fake'
 import { UiService } from './ui.service'
+import { UserService } from '../user/userModel/user.service'
+import { UserServiceFake } from '../user/userModel/user.service.fake'
+import { SharedComponentsModule } from '../shared-components.module'
 
 const FAKE_SVGS = {
   grocery: '<svg><path id="grocery" name="grocery"></path></svg>',
@@ -79,8 +82,11 @@ export const commonTestingModules: any[] = [
   NoopAnimationsModule,
   HttpClientTestingModule,
   RouterTestingModule,
+  SharedComponentsModule,
 ]
 
 export const commonTestingProviders: any[] = [
-  { provide: AuthService, useClass: AuthServiceFake }, UiService,
+  { provide: AuthService, useClass: AuthServiceFake },
+  { provide: UserService, useClass: UserServiceFake },
+  UiService,
 ]
