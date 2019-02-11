@@ -181,7 +181,7 @@
         </div>
       </div>
       <div fxLayout="row" class="margin-top">
-        <button mat-button matStepperPrevious color="accent">Back</button>
+        <button  mat-raised-button matStepperPrevious color="warn">Back</button>
         <div class="flex-spacer"></div>
         <div *ngIf="userError" class="mat-caption error">{{userError}}</div>
         <button mat-raised-button matStepperNext color="accent">Next</button>
@@ -196,7 +196,7 @@
         <app-view-user [user]="this.userForm.value"></app-view-user>
       </div>
       <div fxLayout="row" class="margin-top">
-        <button mat-button matStepperPrevious color="accent">Back</button>
+        <button mat-button matStepperPrevious color="warn">Back</button>
         <div class="flex-spacer"></div>
         <div *ngIf="userError" class="mat-caption error">{{userError}}</div>
         <button mat-button color="warn" (click)="stepper.reset()">Reset</button>
