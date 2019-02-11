@@ -6,7 +6,7 @@ import {
   CanLoad, CanActivateChild, Router,
 } from '@angular/router'
 import { Observable } from 'rxjs'
-import { AuthService, IAuthStatus } from './auth.service'
+import { AuthService, AuthStatusInterface } from './auth.service'
 import { Route } from '@angular/compiler/src/core'
 import { UiService } from '../common/ui.service'
 
@@ -14,7 +14,7 @@ import { UiService } from '../common/ui.service'
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  protected currentAuthStatus: IAuthStatus
+  protected currentAuthStatus: AuthStatusInterface
 
   constructor(
     protected authService: AuthService,

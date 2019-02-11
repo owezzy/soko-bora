@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Role } from './role.enum'
 import { BehaviorSubject, Observable, of, throwError as observableThrowError } from 'rxjs'
 
-import { sign } from 'fake-jwt-sign'
+import { sign } from 'fake-jwt-sign' // for fakeAuthProvider
 import { transformError } from '../common/common'
 import * as decode from 'jwt-decode'
 import { catchError, map } from 'rxjs/operators'
@@ -11,20 +11,20 @@ import { catchError, map } from 'rxjs/operators'
 import { environment } from '../../environments/environment'
 import { CacheService } from './cache.service'
 
-export interface IAuthStatus {
+export interface AuthStatusInterface {
   isAuthenticated: boolean
   userRole: Role
   userId: string
 }
 
-export interface IAuthService {
-  authStatus: BehaviorSubject<IAuthStatus>
-  login(email: string, password: string): Observable<IAuthStatus>
+export interface AuthServiceInterface {
+  authStatus: BehaviorSubject<AuthStatusInterface>
+  login(email: string, password: string): Observable<AuthStatusInterface>
   logout()
   getToken(): string
 }
 
-interface IServerAuthResponse {
+interface ServerAuthResponseInterface {
   accessToken: string
 }
 
@@ -36,16 +36,16 @@ export const defaultAuthStatus = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService extends CacheService implements IAuthService {
+export class AuthService extends CacheService implements AuthServiceInterface {
 
-  authStatus = new BehaviorSubject<IAuthStatus>(
+  authStatus = new BehaviorSubject<AuthStatusInterface>(
     this.getItem('authStatus') || defaultAuthStatus
   )
 
   private readonly authProvider: (
     email: string,
     password: string
-  ) => Observable<IServerAuthResponse>
+  ) => Observable<ServerAuthResponseInterface>
 
   constructor(private httpClient: HttpClient) {
     super()
@@ -58,8 +58,8 @@ export class AuthService extends CacheService implements IAuthService {
 // private exampleAuthProvider(
 //   email: string,
 //   password: string
-// ): Observable<IServerAuthResponse> {
-//   return this.httpClient.post<IServerAuthResponse>(`${environment.baseUrl}/v1/login`, {
+// ): Observable<ServerAuthResponseInterface> {
+//   return this.httpClient.post<ServerAuthResponseInterface>(`${environment.baseUrl}/v1/login`, {
 //     email: email,
 //     password: password,
 //   })
@@ -67,7 +67,7 @@ export class AuthService extends CacheService implements IAuthService {
    private fakeAuthProvider (
      email: string,
      password: string
-   ): Observable<IServerAuthResponse> {
+   ): Observable<ServerAuthResponseInterface> {
     if (!email.toLowerCase().endsWith('@test.com')) {
       return observableThrowError('Failed to login Email needs to end with @test.com')
     }
@@ -80,25 +80,25 @@ export class AuthService extends CacheService implements IAuthService {
          : email.toLowerCase().includes('clerk')
            ? Role.Clerk
            : email.toLowerCase().includes('manager') ? Role.Manager : Role.None,
-     } as IAuthStatus
+     } as AuthStatusInterface
 
      const authResponse = {
        accessToken: sign(authStatus, 'secret', {
          expiresIn: '1h',
          algorithm: 'none',
        }),
-     } as IServerAuthResponse
+     } as ServerAuthResponseInterface
 
      return of(authResponse)
      }
 
-  login(email: string, password: string): Observable<IAuthStatus> {
+  login(email: string, password: string): Observable<AuthStatusInterface> {
     this.logout()
 
     const loginResponse = this.authProvider(email, password).pipe(
       map(value => {
         this.setToken(value.accessToken)
-        return decode(value.accessToken) as IAuthStatus
+        return decode(value.accessToken) as AuthStatusInterface
       }),
       catchError(transformError)
     )
@@ -125,7 +125,7 @@ export class AuthService extends CacheService implements IAuthService {
      this.setItem('jwt', jwt)
   }
 
-  private getDecodedToken(): IAuthStatus {
+  private getDecodedToken(): AuthStatusInterface {
     return decode(this.getItem('jwt'))
   }
 
