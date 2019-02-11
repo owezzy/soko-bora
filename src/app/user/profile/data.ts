@@ -6,7 +6,9 @@ export interface CountyInterface {
 export function CountiesFilter(value: string): CountyInterface[] {
   return Counties.filter(state => {
     return (
-      state.name.toLowerCase().indexOf(value.toLowerCase()) === 0
+      state.name.toLowerCase().indexOf(value.toLowerCase()) === 0 ||
+        state.code.valueOf()
+
     )
   })
 }
