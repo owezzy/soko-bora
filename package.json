@@ -13,7 +13,7 @@
     "build:prod": "ng build --prod",
     "build:ci": "docker build -f Dockerfile.integration . -t $npm_package_config_imageRepo:latest",
     "test:prod": "npm test -- --watch=false",
-    "test:coverage": "ng test --browsers ChromiumNoSandbox --watch=false --code-coverage",
+    "test:coverage": "ng test --watch=false --code-coverage",
     "posttest:coverage": "http-server -c-1 -o -p 9875 ./coverage",
     "predocker:build": "npm run build -- --prod --output-path dist && npm test -- --watch=false && npm run e2e",
     "docker:build": "cross-conf-env docker image build . -t $npm_package_config_imageRepo:$npm_package_version",
@@ -35,7 +35,7 @@
   },
   "config": {
     "imageRepo": "owezzy/soko-bora",
-    "imageName":"soko-bora",
+    "imageName": "soko-bora",
     "imagePort": "8080"
   },
   "prettier": {
@@ -59,18 +59,22 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "core-js": "^2.5.4",
+    "fake-jwt-sign": "^1.1.0",
     "hammerjs": "^2.0.8",
+    "jwt-decode": "^2.2.0",
     "rxjs": "~6.3.3",
+    "ts-enum-util": "^3.1.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.11.0",
+    "@angular-devkit/build-angular": "^0.12.1",
     "@angular/cli": "~7.1.1",
     "@angular/compiler-cli": "~7.1.0",
     "@angular/language-service": "~7.1.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jwt-decode": "^2.2.1",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "dev-norms": "^1.3.6",

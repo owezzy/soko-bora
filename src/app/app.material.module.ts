@@ -8,17 +8,22 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
   MatToolbarModule,
+  MatDatepickerModule,
 } from '@angular/material'
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -26,12 +31,17 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
+
   ],
   exports: [
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -39,6 +49,12 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
   ],
 })
-export class MaterialModule {}
+export class AppMaterialModule {}
