@@ -13,6 +13,9 @@ jobs:
       - store_test_results:
           path: coverage
       - run:
+          name: Send to Codecov
+          command: "bash <(curl -s https://codecov.com/bash) -t $CODECOV_TOKEN"
+      - run:
           name: Build Docker Image
           command: |
             docker build -f Dockerfile.integration .
