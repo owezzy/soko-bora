@@ -8,13 +8,16 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-      - store_artifacts:
-          path: /usr/src/coverage
-      - store_test_results:
-          path: coverage
       - run:
-          name: Send to Codecov
-          command: "bash curl -s https://codecov.com/bash -t $CODECOV_TOKEN"
+          name: upload test coverage
+          command: |
+            if curl --silent --fail https://codecov.io/bash >codecov.sh; then
+              bash <codecov.sh
+            else
+              echo skipping codecov -- script download error
+            fi
+      - store_test_results:
+          path: /tmp/coverage
       - run:
           name: Build Docker Image
           command: |
