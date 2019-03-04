@@ -8,10 +8,6 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-      - store_artifacts:
-          path: /usr/src/coverage
-      - store_test_results:
-          path: coverage
       - run:
           name: Build Docker Image
           command: |
